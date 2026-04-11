@@ -62,7 +62,7 @@ function App() {
       >
         <h1>Study Tracker</h1>
       </div>
-      <p>Your study session tracker</p>
+      <p>Your study session tracker with saved session support</p>
 
       {/* Subject Input */}
       <div style={{ marginTop: '30px', marginBottom: '20px' }}>
