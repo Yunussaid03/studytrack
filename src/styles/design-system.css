@@ -1,0 +1,250 @@
+/**
+ * StudyTrack Design System
+ * Semantic color tokens, typography, and spacing
+ */
+
+:root {
+  /* ===== COLORS ===== */
+  /* Background */
+  --color-bg-primary: hsl(222, 39%, 7%); /* Deep navy */
+  --color-bg-secondary: hsl(222, 40%, 6%); /* Even deeper for sidebar */
+  --color-bg-tertiary: hsl(222, 32%, 10%); /* Card backgrounds */
+  --color-bg-hover: hsl(222, 35%, 12%);
+  --color-bg-active: hsl(222, 38%, 14%);
+
+  /* Text */
+  --color-text-primary: hsl(213, 97%, 93%); /* Nearly white */
+  --color-text-secondary: hsl(215, 28%, 76%); /* Muted gray */
+  --color-text-tertiary: hsl(217, 25%, 64%); /* Even more muted */
+
+  /* Primary - Electric Cyan-Blue */
+  --color-primary: hsl(199, 89%, 56%); /* Electric cyan */
+  --color-primary-hover: hsl(199, 89%, 48%);
+  --color-primary-subtle: hsl(199, 89%, 24%);
+
+  /* Status Colors */
+  --color-success: hsl(142, 72%, 45%); /* Emerald */
+  --color-warning: hsl(38, 92%, 50%); /* Amber */
+  --color-destructive: hsl(0, 87%, 52%); /* Red */
+
+  /* Borders */
+  --color-border: hsl(217, 25%, 18%); /* Hairline slate */
+  --color-border-hover: hsl(199, 89%, 56%); /* Primary on hover */
+
+  /* ===== GRADIENTS ===== */
+  --gradient-primary: linear-gradient(135deg, hsl(199, 89%, 56%), hsl(199, 89%, 48%));
+  --gradient-success: linear-gradient(135deg, hsl(142, 72%, 45%), hsl(142, 72%, 35%));
+  --gradient-warning: linear-gradient(135deg, hsl(38, 92%, 50%), hsl(38, 92%, 40%));
+  --gradient-card: linear-gradient(180deg, hsl(222, 32%, 12%), hsl(222, 32%, 10%));
+  --gradient-timer: linear-gradient(180deg, hsl(222, 32%, 14%), hsl(222, 32%, 10%));
+
+  /* ===== SHADOWS ===== */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-glow-primary: 0 0 20px rgba(30, 144, 255, 0.4);
+  --shadow-glow-warning: 0 0 20px rgba(255, 193, 7, 0.4);
+
+  /* ===== SPACING ===== */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* ===== TYPOGRAPHY ===== */
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ===== BORDER RADIUS ===== */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ===== TRANSITIONS ===== */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+}
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+p {
+  margin-bottom: var(--space-md);
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* ===== FORM ELEMENTS ===== */
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+input,
+textarea,
+select {
+  background: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  transition: all var(--transition-fast);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1);
+}
+
+input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+/* ===== BUTTONS ===== */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: var(--font-weight-semibold);
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ===== UTILITIES ===== */
+.text-muted {
+  color: var(--color-text-tertiary);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+.text-destructive {
+  color: var(--color-destructive);
+}
+
+.bg-muted {
+  background: var(--color-bg-hover);
+}
+
+.rounded-sm {
+  border-radius: var(--radius-sm);
+}
+
+.rounded-md {
+  border-radius: var(--radius-md);
+}
+
+.rounded-lg {
+  border-radius: var(--radius-lg);
+}
+
+.rounded-xl {
+  border-radius: var(--radius-xl);
+}
+
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.gap-sm {
+  gap: var(--space-sm);
+}
+
+.gap-md {
+  gap: var(--space-md);
+}
+
+.gap-lg {
+  gap: var(--space-lg);
+}

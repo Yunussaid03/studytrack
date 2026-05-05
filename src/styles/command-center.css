@@ -1,0 +1,23 @@
+/**
+ * CommandCenter Page Styles
+ */
+
+.command-center {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  animation: fade-in var(--transition-base);
+}
+
+.command-center-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: var(--space-2xl);
+}
+
+/* Mobile */
+@media (max-width: 1023px) {
+  .command-center-grid {
+    grid-template-columns: 1fr;
+  }
+}

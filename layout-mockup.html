@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyTrack - New Layout Mockup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .mockup-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(180deg, #f2f8ff 0%, #eef6ff 100%);
+            padding: 20px;
+            border-bottom: 2px solid #dbe5f4;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #0c3f7c;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            color: #556b85;
+            font-size: 0.9rem;
+        }
+
+        .layout-wrapper {
+            display: grid;
+            grid-template-columns: 220px 1fr 240px;
+            gap: 20px;
+            padding: 20px;
+            min-height: 600px;
+        }
+
+        /* ===== LEFT SIDEBAR ===== */
+        .sidebar {
+            background: #f0f4f9;
+            border: 1px solid #d8dde8;
+            border-radius: 14px;
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .sidebar-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0c3f7c;
+        }
+
+        .sidebar-toggle {
+            width: 32px;
+            height: 32px;
+            background: white;
+            border: 1px solid #d8dde8;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #556b85;
+        }
+
+        .sidebar-toggle:hover {
+            background: #ffffff;
+            border-color: #7fa1f6;
+        }
+
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .task-item {
+            padding: 12px;
+            background: white;
+            border: 1px solid #d8dde8;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            color: #17243d;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid #1b6ed8;
+        }
+
+        .task-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(27, 110, 216, 0.15);
+        }
+
+        .task-priority {
+            font-size: 0.75rem;
+            color: #556b85;
+            margin-top: 4px;
+        }
+
+        .add-task-btn {
+            width: 100%;
+            padding: 12px;
+            background: #1b6ed8;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .add-task-btn:hover {
+            background: #1456b5;
+            transform: translateY(-2px);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .progress-section {
+            background: white;
+            border: 1px solid #d8dde8;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .progress-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0c3f7c;
+        }
+
+        .progress-percent {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1b6ed8;
+        }
+
+        .progress-stats {
+            font-size: 0.85rem;
+            color: #556b85;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f0f4f9;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 65%;
+            background: linear-gradient(90deg, #1b6ed8 0%, #1f5198 100%);
+            border-radius: 999px;
+        }
+
+        .timer-zone {
+            background: linear-gradient(180deg, #ffffff 0%, #f7faff 100%);
+            border: 1px solid #dbe5f4;
+            border-radius: 14px;
+            padding: 32px 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .timer-display {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #102f63;
+            text-align: center;
+            margin: 0;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+
+        .timer-label {
+            text-align: center;
+            color: #556b85;
+            font-size: 0.95rem;
+            margin-top: 12px;
+        }
+
+        .subject-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #fbfdff;
+            border: 1px solid #d8dde8;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            color: #17243d;
+            margin-top: 16px;
+        }
+
+        .subject-input:focus {
+            outline: none;
+            border-color: #7fa1f6;
+            box-shadow: 0 0 0 6px rgba(127, 161, 246, 0.14);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+
+        .btn-start {
+            background: #1b6ed8;
+            color: white;
+            min-width: 100px;
+        }
+
+        .btn-start:hover {
+            background: #1456b5;
+            transform: translateY(-2px);
+        }
+
+        .btn-pause {
+            background: #de4a48;
+            color: white;
+            min-width: 100px;
+        }
+
+        .btn-pause:hover {
+            background: #c23d3b;
+            transform: translateY(-2px);
+        }
+
+        .btn-reset {
+            background: #f3f5fb;
+            color: #344154;
+            border: 1px solid #d6dde9;
+            min-width: 100px;
+        }
+
+        .btn-reset:hover {
+            background: #e6ebf7;
+        }
+
+        .sessions-section {
+            background: white;
+            border: 1px solid #d8dde8;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .sessions-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0c3f7c;
+            margin-bottom: 14px;
+        }
+
+        .session-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px;
+            background: #f9fbfd;
+            border: 1px solid #e7effa;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .session-info {
+            flex: 1;
+        }
+
+        .session-subject {
+            font-weight: 600;
+            color: #132847;
+            margin-bottom: 4px;
+        }
+
+        .session-meta {
+            font-size: 0.85rem;
+            color: #60708c;
+        }
+
+        .session-badge {
+            background: #e6f0ff;
+            color: #1f5198;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* ===== RIGHT PANEL ===== */
+        .right-panel {
+            background: #f0f4f9;
+            border: 1px solid #d8dde8;
+            border-radius: 14px;
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+            max-height: 80vh;
+        }
+
+        .stats-card {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #d8dde8;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #556b85;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0c3f7c;
+        }
+
+        .stat-unit {
+            font-size: 0.85rem;
+            color: #556b85;
+        }
+
+        .mini-progress {
+            width: 100%;
+            height: 4px;
+            background: #e7effa;
+            border-radius: 999px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .mini-progress-fill {
+            height: 100%;
+            width: 65%;
+            background: #1b6ed8;
+            border-radius: 999px;
+        }
+
+        .theme-toggle {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            border: 1px solid #d8dde8;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #0c3f7c;
+            transition: all 0.2s ease;
+            margin-top: 12px;
+        }
+
+        .theme-toggle:hover {
+            background: #1b6ed8;
+            color: white;
+            border-color: #1b6ed8;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .layout-wrapper {
+                grid-template-columns: 1fr 200px;
+            }
+
+            .sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .layout-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .right-panel {
+                display: none;
+            }
+        }
+
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        .legend-color {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+        }
+
+        .color-sidebar {
+            background: #e3f2fd;
+            border: 1px solid #1976d2;
+        }
+
+        .color-main {
+            background: #f3e5f5;
+            border: 1px solid #7b1fa2;
+        }
+
+        .color-right {
+            background: #e8f5e9;
+            border: 1px solid #388e3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="mockup-container">
+        <div class="header">
+            <h1>✨ StudyTrack - Improved Layout</h1>
+            <p>Better space utilization with sidebar + main focus + quick stats</p>
+        </div>
+
+        <div class="layout-wrapper">
+            <!-- LEFT SIDEBAR -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <span class="sidebar-title">Tasks</span>
+                    <div class="sidebar-toggle" title="Collapse sidebar">≡</div>
+                </div>
+                <div class="task-list">
+                    <div class="task-item">
+                        React hooks review
+                        <div class="task-priority">🔴 Priority 1</div>
+                    </div>
+                    <div class="task-item">
+                        Fix timer component
+                        <div class="task-priority">🟡 Priority 2</div>
+                    </div>
+                    <div class="task-item">
+                        CSS Grid practice
+                        <div class="task-priority">🔴 Priority 1</div>
+                    </div>
+                    <div class="task-item">
+                        Database design
+                        <div class="task-priority">🟢 Priority 3</div>
+                    </div>
+                </div>
+                <button class="add-task-btn">+ Add Task</button>
+            </div>
+
+            <!-- MAIN CONTENT -->
+            <div class="main-content">
+                <!-- Progress Section -->
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span class="progress-title">📊 Daily Progress</span>
+                        <span class="progress-percent">65%</span>
+                    </div>
+                    <div class="progress-stats">78 min / 120 min goal</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Timer Zone -->
+                <div class="timer-zone">
+                    <p class="timer-label">⏱️ Session Timer</p>
+                    <p class="timer-display">24:35</p>
+                    <input type="text" class="subject-input" placeholder="What are you studying?" value="React hooks review">
+                    <div class="controls">
+                        <button class="btn btn-start">▶ Start</button>
+                        <button class="btn btn-pause">⏸ Pause</button>
+                        <button class="btn btn-reset">↻ Reset</button>
+                    </div>
+                </div>
+
+                <!-- Sessions Section -->
+                <div class="sessions-section">
+                    <div class="sessions-title">📝 Today's Sessions</div>
+                    <div class="session-item">
+                        <div class="session-info">
+                            <div class="session-subject">CSS Flexbox Layout</div>
+                            <div class="session-meta">10:30 AM</div>
+                        </div>
+                        <div class="session-badge">25 min</div>
+                    </div>
+                    <div class="session-item">
+                        <div class="session-info">
+                            <div class="session-subject">JavaScript Closures</div>
+                            <div class="session-meta">11:15 AM</div>
+                        </div>
+                        <div class="session-badge">20 min</div>
+                    </div>
+                    <div class="session-item">
+                        <div class="session-info">
+                            <div class="session-subject">React Components</div>
+                            <div class="session-meta">12:10 PM</div>
+                        </div>
+                        <div class="session-badge">33 min</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL -->
+            <div class="right-panel">
+                <div class="stats-card">
+                    <div class="stat-item">
+                        <div class="stat-label">Daily Goal</div>
+                        <div class="stat-value">
+                            65<span class="stat-unit">%</span>
+                        </div>
+                        <div class="mini-progress">
+                            <div class="mini-progress-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-label">Sessions Today</div>
+                        <div class="stat-value">3</div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-label">Total Focus Time</div>
+                        <div class="stat-value">
+                            78<span class="stat-unit">m</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <div class="stat-label">Streak</div>
+                        <div class="stat-value">7 🔥</div>
+                    </div>
+                </div>
+
+                <button class="theme-toggle">🌙 Dark Mode</button>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color color-sidebar"></div>
+                <span><strong>Left Sidebar:</strong> Task context</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color color-main"></div>
+                <span><strong>Main:</strong> Primary focus (Timer)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color color-right"></div>
+                <span><strong>Right:</strong> Quick stats</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

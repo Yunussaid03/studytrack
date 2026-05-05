@@ -1,0 +1,89 @@
+/**
+ * Responsive Design & Media Queries
+ */
+
+/* Large screens (1200px+) - default */
+/* Sidebar visible, full layout */
+
+/* Tablets (768px - 1199px) */
+@media (max-width: 1199px) {
+  :root {
+    --font-size-5xl: 2.5rem;
+    --font-size-4xl: 2rem;
+  }
+
+  main {
+    padding: var(--space-lg);
+  }
+}
+
+/* Small tablets (640px - 767px) */
+@media (max-width: 767px) {
+  :root {
+    --font-size-5xl: 2rem;
+    --font-size-4xl: 1.75rem;
+    --font-size-3xl: 1.5rem;
+  }
+
+  main {
+    padding: var(--space-md);
+  }
+
+  .hide-on-mobile {
+    display: none;
+  }
+}
+
+/* Mobile (< 640px) */
+@media (max-width: 639px) {
+  :root {
+    --font-size-5xl: 1.75rem;
+    --font-size-4xl: 1.5rem;
+    --font-size-3xl: 1.25rem;
+    --font-size-2xl: 1.125rem;
+  }
+
+  body {
+    font-size: var(--font-size-sm);
+  }
+
+  main {
+    padding: var(--space-sm);
+  }
+
+  button {
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--font-size-sm);
+  }
+
+  input,
+  textarea,
+  select {
+    padding: var(--space-sm);
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+
+  h1 {
+    font-size: var(--font-size-2xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  h3 {
+    font-size: var(--font-size-lg);
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .no-print {
+    display: none;
+  }
+}
